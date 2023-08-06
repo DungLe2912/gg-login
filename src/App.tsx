@@ -1,14 +1,30 @@
-import { useEffect } from "react";
+import { useRef } from "react";
 import "./App.css";
-import LoginButton from "./LoginButton";
+import Video from "./VideoComponent";
+import Content from "./Content";
+
 function App() {
-  useEffect(() => {
-    // window.open("https://www.w3schools.com", "_blank");
-    window.open("http://stackoverflow.com", "Stack_Overflow", "location=0");
-  }, []);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  // type VideoHandle = React.ElementRef<typeof Video>;
+  // const videoRef = useRef<VideoHandle>(null);
+  // console.log("🚀 ~ file: App.tsx:9 ~ App ~ videoRef:", videoRef);
+
+  const handlePlayVideo = () => {
+    if (videoRef.current) {
+      // videoRef.current.remove();
+      videoRef.current.play();
+    }
+  };
+  const handlePauseVideo = () => {
+    if (videoRef.current) videoRef.current.pause();
+  };
+
   return (
     <div className="App">
-      <LoginButton />
+      {/* <Video ref={videoRef} />
+      <button onClick={handlePlayVideo}>Play</button>
+      <button onClick={handlePauseVideo}>Pause</button> */}
+      <Content />
     </div>
   );
 }
